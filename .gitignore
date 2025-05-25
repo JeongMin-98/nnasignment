@@ -1,6 +1,6 @@
-./dataset
-./log
-./status
-./wandb
+dataset
+log
+status
+wandb
 *.pth
 *.png
