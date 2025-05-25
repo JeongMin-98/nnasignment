@@ -1,0 +1,6 @@
+./dataset
+./log
+./status
+./wandb
+*.pth
+*.png
