@@ -158,9 +158,13 @@ def train_model(model_name: str):
 
         scheduler.step(val_loss)
         if args.use_wandb:
-            wandb.log({f"{model_name}_train_loss": train_loss, f"{model_name}_val_loss": val_loss,
-                       f"{model_name}_train_acc": train_acc, f"{model_name}_val_acc": val_acc, "epoch": epoch})
-
+            wandb.log({
+                "train_loss": train_loss,
+                "val_loss": val_loss,
+                "train_acc": train_acc,
+                "val_acc": val_acc,
+                "epoch": epoch
+            })
     model.load_state_dict(best_wts)
     torch.save(model.state_dict(), f"{model_name}_final.pth")
     return model, history
@@ -176,7 +180,7 @@ def test_model(model_name: str):
     if not args.no_display:
         plot_confusion_matrix(preds, labels, classes, f"{model_name} Confusion Matrix")
     if args.use_wandb:
-        wandb.log({f"{model_name}_test_acc": test_acc})
+        wandb.log({"test_acc": test_acc})
     return test_acc
 
 # Main
